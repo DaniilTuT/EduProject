@@ -1,0 +1,57 @@
+﻿{
+  "even": {
+    "monday": {
+      "1": {
+        
+      },
+      
+      "2": {
+        
+      },
+      "3": {
+        
+      },
+      "4": {
+        
+      },
+      "5": {
+        
+      }
+    },
+    "tuesday": {
+      
+    },
+    "wednesday": {
+      
+    },
+    "thursday": {
+      
+    },
+    "friday": {
+      
+    },
+    "saturday": {
+      
+    }
+  },
+  "odd": {
+    "monday": {
+      
+    },
+    "tuesday": {
+      
+    },
+    "wednesday": {
+      
+    },
+    "thursday": {
+      
+    },
+    "friday": {
+      
+    },
+    "saturday": {
+      
+    }
+  }
+}
