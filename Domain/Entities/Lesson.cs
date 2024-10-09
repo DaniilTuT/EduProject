@@ -5,11 +5,10 @@ namespace Domain.Entities;
 
 public class Lesson:BaseEntity
 {
-    
-    Subject Subject { get; set; }
-    Teacher Teacher { get; set; }
-    TypeOfLesson TypeOfLesson  { get; set; }
-    DateRange DateRange  { get; set; }
+    public Subject Subject { get; set; }
+    public Teacher Teacher { get; set; }
+    public TypeOfLesson TypeOfLesson  { get; set; }
+    public DateRange DateRange  { get; set; }
 
     public void Update(Lesson lesson)
     {

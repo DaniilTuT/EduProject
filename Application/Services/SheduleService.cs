@@ -43,6 +43,12 @@ public class SheduleService
     }
     
     
+    public void Delete(Guid id)
+    {
+        var shedule = GetByIdOrThrow(id);
+        _sheduleRepository.Delete(shedule);
+    }
+    
     private Shedule GetByIdOrThrow(Guid id)
     {
         var person = _sheduleRepository.GetById(id);

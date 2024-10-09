@@ -1,9 +1,12 @@
 using Application.Interfaces.Repository;
 using Application.Services;
 using Infrastructure.Dal.EntityFramework;
+using Infrastructure.Dal.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<ILessonRepository, LessonRepository>();
+builder.Services.AddScoped<ISheduleRepository, SheduleRepository>();
 builder.Services.AddDbContext<ProjectDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllers();
