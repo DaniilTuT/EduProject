@@ -12,7 +12,8 @@ public class EntityNotFoundException<T> : BaseNotFoundException where T : BaseEn
     /// <summary>
     /// Конструктор
     /// </summary>
-    public EntityNotFoundException(string paramName, string value)
+    public EntityNotFoundException(string paramName, string value) 
+    
         : base(nameof(T), paramName, value)
     {
     }
