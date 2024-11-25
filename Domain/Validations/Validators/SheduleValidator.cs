@@ -5,9 +5,6 @@ using FluentValidation;
 namespace Domain.Validations.Validators;
 public class SheduleValidator: AbstractValidator<Shedule>
 {
-    /// <summary>
-    /// Валидация метода Shedule
-    /// </summary>
     public SheduleValidator()
     {
         RuleFor(shedule => shedule.DayOfWeek)

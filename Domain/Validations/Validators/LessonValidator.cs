@@ -6,9 +6,6 @@ namespace Domain.Validations.Validators
 {
     public class LessonValidator : AbstractValidator<Lesson>
     {
-        /// <summary>
-        /// Валидация метода Lesson
-        /// </summary>
         public LessonValidator()
         {
             RuleFor(lesson => lesson.Subject.Name)
@@ -17,7 +14,8 @@ namespace Domain.Validations.Validators
 
             RuleFor(lesson => lesson.DateRange.StartDate)
                 .LessThan(lesson => lesson.DateRange.EndDate)
-                .WithMessage(ValidationMessages.WrongTime);
+                .WithMessage(ValidationMessages.WrongTime)
+                .NotNull().WithMessage(ValidationMessages.NotNull);
 
             RuleFor(lesson => lesson.Teacher)
                 .NotNull().WithMessage(ValidationMessages.NotNull)
