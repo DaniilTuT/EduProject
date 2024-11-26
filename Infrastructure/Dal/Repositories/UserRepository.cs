@@ -5,45 +5,45 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Dal.Repositories;
 
-public class SheduleRepository : ISheduleRepository
+public class UserRepository : IUserRepository
 {
     private readonly ProjectDbContext _projectDbContext;
 
-    public SheduleRepository(ProjectDbContext projectDbContext)
+    public UserRepository(ProjectDbContext projectDbContext)
     {
         _projectDbContext = projectDbContext;
     }
 
-    public Shedule? GetById(Guid id)
+    public User GetById(Guid id)
     {
-        var shedule = _projectDbContext.Shedules.FirstOrDefault(x => x.Id == id);
+        var shedule = _projectDbContext.Users.FirstOrDefault(x => x.Id == id);
         return shedule;
     }
 
-    public List<Shedule> GetAll()
+    public List<User> GetAll()
     {
-        var shedules = _projectDbContext.Shedules.ToList();
+        var shedules = _projectDbContext.Users.ToList();
         return shedules;
     }
     
 
-    public void Create(Shedule entity)
+    public void Create(User entity)
     {
-        _projectDbContext.Shedules.AddAsync(entity);
+        _projectDbContext.Users.AddAsync(entity);
         _projectDbContext.SaveChangesAsync();
     }
 
-    public bool Update(Shedule entity)
+    public bool Update(User entity)
     {
         _projectDbContext.Entry(entity).State = EntityState.Modified;
         _projectDbContext.SaveChangesAsync();
         return true;
     }
 
-    public void Delete(Shedule entity)
+    public void Delete(User entity)
     {
-        var entitys = _projectDbContext.Shedules.Find(entity.Id);
-        _projectDbContext.Shedules.Remove(entitys);
+        var entitys = _projectDbContext.Users.Find(entity.Id);
+        _projectDbContext.Users.Remove(entitys);
         _projectDbContext.SaveChangesAsync();
     }
     

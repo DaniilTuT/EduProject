@@ -13,6 +13,7 @@ public class ProjectDbContext : DbContext
 {
     public DbSet<Shedule> Shedules { get; init; }
     public DbSet<Lesson> Lessons { get; init; }
+    public DbSet<User> Users { get; init; }
 
     public ProjectDbContext(DbContextOptions<ProjectDbContext> options) :
         base(options)
@@ -27,6 +28,5 @@ public class ProjectDbContext : DbContext
         base.OnModelCreating(modelBuilder);
     
         modelBuilder.ApplyConfiguration(new LessonConfiguration());
-        // modelBuilder.ApplyConfiguration(new SheduleConfiguration());
     }
 }
