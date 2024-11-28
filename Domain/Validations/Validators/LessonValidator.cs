@@ -9,7 +9,7 @@ namespace Domain.Validations.Validators
         public LessonValidator()
         {
             RuleFor(lesson => lesson.Subject.Name)
-                .NotEmpty().WithMessage(ValidationMessages.NotNull)
+                .NotEmpty().WithMessage(ValidationMessages.NotEmpty)
                 .Length(0,100).WithMessage(ValidationMessages.WrongLength);
 
             RuleFor(lesson => lesson.DateRange.StartDate)

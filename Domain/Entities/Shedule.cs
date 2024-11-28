@@ -6,6 +6,7 @@ namespace Domain.Entities;
 
 public class Shedule: BaseEntity
 {
+    public Shedule(){}
     /// <summary>
     /// Конструктор класса Shedule
     /// </summary>

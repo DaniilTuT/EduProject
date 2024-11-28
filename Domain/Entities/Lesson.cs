@@ -6,6 +6,7 @@ namespace Domain.Entities;
 
 public class Lesson:BaseEntity
 {
+    public Lesson(){}
     /// <summary>
     /// Конструктор класса Lesson
     /// </summary>
