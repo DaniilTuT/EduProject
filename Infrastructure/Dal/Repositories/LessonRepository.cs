@@ -5,45 +5,45 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Dal.Repositories;
 
-public class SheduleRepository : ISheduleRepository
+public class LessonRepository : ILessonRepository
 {
     private readonly ProjectDbContext _projectDbContext;
 
-    public SheduleRepository(ProjectDbContext projectDbContext)
+    public LessonRepository(ProjectDbContext projectDbContext)
     {
         _projectDbContext = projectDbContext;
     }
 
-    public Shedule? GetById(Guid id)
+    public Lesson? GetById(Guid id)
     {
-        var shedule = _projectDbContext.Shedules.FirstOrDefault(x => x.Id == id);
-        return shedule;
+        var lesson = _projectDbContext.Lessons.FirstOrDefault(x => x.Id == id);
+        return lesson;
     }
 
-    public List<Shedule> GetAll()
+    public List<Lesson> GetAll()
     {
-        var shedules = _projectDbContext.Shedules.ToList();
-        return shedules;
+        var lessons = _projectDbContext.Lessons.ToList();
+        return lessons;
     }
     
 
-    public void Create(Shedule entity)
+    public void Create(Lesson entity)
     {
-        _projectDbContext.Shedules.AddAsync(entity);
+        _projectDbContext.Lessons.AddAsync(entity);
         _projectDbContext.SaveChangesAsync();
     }
 
-    public bool Update(Shedule entity)
+    public bool Update(Lesson entity)
     {
         _projectDbContext.Entry(entity).State = EntityState.Modified;
         _projectDbContext.SaveChangesAsync();
         return true;
     }
 
-    public void Delete(Shedule entity)
+    public void Delete(Lesson entity)
     {
-        var entitys = _projectDbContext.Shedules.Find(entity.Id);
-        _projectDbContext.Shedules.Remove(entitys);
+        var entitys = _projectDbContext.Lessons.Find(entity.Id);
+        _projectDbContext.Lessons.Remove(entitys);
         _projectDbContext.SaveChangesAsync();
     }
     

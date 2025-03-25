@@ -42,8 +42,8 @@ public class LessonService
         _lessonRepository.Update(less);
         return lesson;
     }
-    
-    
+
+
     private Lesson GetByIdOrThrow(Guid id)
     {
         var lesson = _lessonRepository.GetById(id);
