@@ -3,7 +3,7 @@ using Domain.Primitives.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Dal.EntityFramework.Configurations
+namespace Infrastructure.Dal.EntityFrameworkCore.Configurations
 {
     /// <summary>
     /// Класс конфигурации для Lesson
@@ -56,6 +56,11 @@ namespace Infrastructure.Dal.EntityFramework.Configurations
                     .HasColumnName("end_date")
                     .HasColumnType("timestamp");
             });
+            
+            builder.HasOne(l => l.Shedule)
+                .WithMany(s => s.Lessons)
+                .HasForeignKey(l => l.SheduleId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

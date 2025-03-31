@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces.Repository;
 using Domain.Entities;
-using Infrastructure.Dal.EntityFramework;
+using Infrastructure.Dal.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Dal.Repositories;

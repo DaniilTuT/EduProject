@@ -1,6 +1,7 @@
 using Application.Interfaces.Repository;
+using Application.Mappers;
 using Application.Services;
-using Infrastructure.Dal.EntityFramework;
+using Infrastructure.Dal.EntityFrameworkCore;
 using Infrastructure.Dal.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<LessonService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<SheduleService>();
+builder.Services.AddAutoMapper(typeof(UserProfile), typeof(SheduleProfile));
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "localhost"; // Укажи адрес Redis-сервера
+});
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

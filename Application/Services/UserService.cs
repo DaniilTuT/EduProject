@@ -13,6 +13,19 @@ public class UserService
         _userRepository = userRepository;
     }
 
+    public ICollection<VerificationCode> GetVerificationToken(Guid userId)
+    {
+        var user = GetByIdOrThrow(userId);
+        return user.VerificationCodes;
+    }
+
+    public User SetUserVerified(Guid userId)
+    {
+        var user = GetByIdOrThrow(userId);
+        user.IsVerified = true;
+        return user;
+    }
+
 
     public User GetUserById(Guid userId)
     {

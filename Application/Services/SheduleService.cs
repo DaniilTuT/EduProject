@@ -20,7 +20,7 @@ public class SheduleService
         var shedule = GetByIdOrThrow(sheduleId);
         return shedule;
     }
-
+    
     public List<Shedule> GetAllShedules()
     {
         var shedules = _sheduleRepository.GetAll();
@@ -32,7 +32,6 @@ public class SheduleService
         _sheduleRepository.Create(shedule);
         return shedule;
     }
-    
     
     public Shedule UpdateShedule(Shedule shedule)
     {
