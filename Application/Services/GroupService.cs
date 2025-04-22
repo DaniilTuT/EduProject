@@ -13,7 +13,7 @@ public class GroupService
         _groupRepository = groupRepository;
     }
 
-    public Group GetGroupById(Guid id)
+    public Group? GetGroupById(Guid id)
     {
         var group = GetByIdOrThrow(id);
         return group;
@@ -35,6 +35,12 @@ public class GroupService
     {
         _groupRepository.Update(group);
         return group;
+    }
+    
+    public void Delete(Guid id)
+    {
+        var group = GetByIdOrThrow(id);
+        _groupRepository.Delete(group);
     }
     private Group GetByIdOrThrow(Guid id)
     {

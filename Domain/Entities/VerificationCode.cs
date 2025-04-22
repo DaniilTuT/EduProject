@@ -15,7 +15,7 @@ public class VerificationCode : BaseEntity
 
     public Guid Id { get; set; }
     public Guid UserId { get; set; }                 // Связь с пользователем
-    public string Token { get; set; }                 // Код подтверждения
+    public string Token { get; set; }                // Код подтверждения
     public DateTime ExpirationTime { get; set; }     // Срок действия кода
 
     // Навигационное свойство для связи с пользователем

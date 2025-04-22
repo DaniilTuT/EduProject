@@ -13,11 +13,10 @@ public class SheduleConfiguration : IEntityTypeConfiguration<Shedule>
         builder.Property(s => s.Id)
             .HasColumnName("Id")
             .IsRequired();
-        
+
         builder.Property(l => l.Day)
             .IsRequired()
-            .HasColumnName("Day")
-            .HasColumnType("dayofweek");
+            .HasColumnName("Day");
 
         builder.Property(s => s.IsOddWeek)
             .IsRequired()

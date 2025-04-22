@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Domain.Entities;
 
-namespace Application.Dtos;
+namespace Application.Dtos.SheduleDtos;
 
 public class SheduleUpdateDto
 {
@@ -10,10 +10,10 @@ public class SheduleUpdateDto
 
     public DayOfWeek? DayOfWeek { get; set; }
 
-    public List<Lesson>? Lessons { get; set; }
+    public List<Guid>? LessonsIds { get; set; }
     
     [Required]
-    public Group Group { get; set; }
+    public Guid GroupId { get; set; }
 
     public bool? IsOddWeek { get; set; }
 }

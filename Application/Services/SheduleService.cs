@@ -15,7 +15,7 @@ public class SheduleService
     }
 
 
-    public Shedule GetSheduleById(Guid sheduleId)
+    public Shedule? GetSheduleById(Guid sheduleId)
     {
         var shedule = GetByIdOrThrow(sheduleId);
         return shedule;

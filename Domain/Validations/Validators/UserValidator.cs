@@ -15,8 +15,7 @@ public class UserValidator:AbstractValidator<User>
             .NotEmpty().WithMessage(ValidationMessages.NotEmpty)
             .NotNull().WithMessage(ValidationMessages.NotNull)
             .EmailAddress().WithMessage(ValidationMessages.WrongEmail);
-        RuleFor(user => user.Group)
-            .NotEmpty().WithMessage(ValidationMessages.NotEmpty)
-            .NotNull().WithMessage(ValidationMessages.NotNull);
+        RuleFor(u => u.GroupId)
+            .NotEmpty().WithMessage(ValidationMessages.NotEmpty);
     }
 }

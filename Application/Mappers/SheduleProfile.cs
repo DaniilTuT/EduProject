@@ -1,21 +1,21 @@
-﻿using Application.Dtos;
+﻿using Application.Dtos.SheduleDtos;
 using AutoMapper;
 using Domain.Entities;
 
-namespace Application.Mappers
+namespace Application.Mappers;
+
+public class SheduleProfile : Profile
 {
-    public class SheduleProfile : Profile
+    public SheduleProfile()
     {
-        public SheduleProfile()
-        {
-            CreateMap<Shedule, SheduleReadDto>()
-                .ForMember(dest => dest.Lessons, opt => opt.MapFrom(src => src.Lessons ?? new List<Lesson>()));
+        CreateMap<Shedule, SheduleReadDto>()
+            .ForMember(dest => dest.LessonsIds, 
+                opt => opt.MapFrom(src => src.Lessons != null 
+                    ? src.Lessons.Select(l => l.Id).ToList() 
+                    : new List<Guid>()));
 
-            CreateMap<SheduleCreateDto, Shedule>()
-                .ForCtorParam("lessons", opt => opt.MapFrom(src => src.Lessons ?? new List<Lesson>()));
-
-            CreateMap<SheduleUpdateDto, Shedule>()
-                .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null)); // Игнорируем null-значения при обновлении
-        }
+        CreateMap<SheduleCreateDto, Shedule>()
+            .ForMember(dest => dest.Lessons, opt => opt.Ignore()) 
+            .ForMember(dest => dest.Group, opt => opt.Ignore()); 
     }
 }

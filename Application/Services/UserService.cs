@@ -27,7 +27,7 @@ public class UserService
     }
 
 
-    public User GetUserById(Guid userId)
+    public User? GetUserById(Guid userId)
     {
         var user = GetByIdOrThrow(userId);
         return user;

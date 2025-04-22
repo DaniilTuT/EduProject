@@ -1,10 +1,10 @@
-﻿using Application.Dtos;
-using Application.Services;
+﻿using Application.Services;
 using AutoMapper;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
+using Application.Dtos.UserDtos;
 
 
 namespace Infrastructure.Api
@@ -99,7 +99,7 @@ namespace Infrastructure.Api
                 var createdUser = _userService.CreateUser(user);
                 var userDto = _mapper.Map<UserReadDto>(createdUser);
 
-                await _cache.RemoveAsync("AllUsers"); // Удаляем кэш всех пользователей
+                await _cache.RemoveAsync("AllUsers"); 
                 return Ok(userDto);
             }
             catch (Exception ex)

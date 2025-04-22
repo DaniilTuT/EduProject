@@ -10,12 +10,9 @@ public class SheduleValidator: AbstractValidator<Shedule>
         RuleFor(shedule => shedule.Day)
             .NotEmpty().WithMessage(ValidationMessages.NotEmpty)
             .NotNull().WithMessage(ValidationMessages.NotNull);
-        RuleFor(shedule => shedule.Lessons)
-            .NotNull().WithMessage(ValidationMessages.NotNull);
         RuleFor(shedule => shedule.IsOddWeek)
             .NotNull().WithMessage(ValidationMessages.NotNull);
-        RuleFor(shedule => shedule.Group)
-            .NotEmpty().WithMessage(ValidationMessages.NotEmpty)
-            .NotNull().WithMessage(ValidationMessages.NotNull);
+        RuleFor(s => s.GroupId)
+            .NotEmpty().WithMessage(ValidationMessages.NotEmpty);
     }
 }

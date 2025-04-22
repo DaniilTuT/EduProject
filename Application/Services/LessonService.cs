@@ -16,7 +16,7 @@ public class LessonService
     }
 
 
-    public Lesson GetLessonById(Guid lessonId)
+    public Lesson? GetLessonById(Guid lessonId)
     {
         var lesson = GetByIdOrThrow(lessonId);
         return lesson;
@@ -35,12 +35,18 @@ public class LessonService
     }
     
     
-    public Lesson UpdateLesson(Lesson lesson)
+    public Lesson? UpdateLesson(Lesson lesson)
     {
         var less = GetByIdOrThrow(lesson.Id);
         less.Update(lesson);
         _lessonRepository.Update(less);
         return lesson;
+    }
+    
+    public void Delete(Guid id)
+    {
+        var lesson = GetByIdOrThrow(id);
+        _lessonRepository.Delete(lesson);
     }
 
 

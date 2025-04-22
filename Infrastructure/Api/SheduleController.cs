@@ -1,10 +1,10 @@
-﻿using Application.Dtos;
-using Application.Services;
+﻿using Application.Services;
 using AutoMapper;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
+using Application.Dtos.SheduleDtos;
 
 
 namespace Infrastructure.Api
@@ -28,7 +28,7 @@ namespace Infrastructure.Api
         public async Task<IActionResult> GetAllShedule()
         {
             string cacheKey = "all_shedules";
-            string cachedData = await _cache.GetStringAsync(cacheKey);
+            var cachedData = await _cache.GetStringAsync(cacheKey);
 
             if (cachedData != null)
             {
@@ -59,7 +59,7 @@ namespace Infrastructure.Api
         public async Task<IActionResult> GetShedule([FromQuery] Guid id)
         {
             string cacheKey = $"shedule_{id}";
-            string cachedData = await _cache.GetStringAsync(cacheKey);
+            var cachedData = await _cache.GetStringAsync(cacheKey);
 
             if (cachedData != null)
             {
@@ -96,7 +96,7 @@ namespace Infrastructure.Api
                 var createdShedule = _sheduleService.CreateShedule(shedule);
                 var sheduleDto = _mapper.Map<SheduleReadDto>(createdShedule);
 
-                await _cache.RemoveAsync("all_shedules"); // Чистим кеш всех расписаний
+                await _cache.RemoveAsync("all_shedules"); 
 
                 return Ok(sheduleDto);
             }
@@ -120,7 +120,7 @@ namespace Infrastructure.Api
 
                 string cacheKey = $"shedule_{request.Id}";
                 await _cache.RemoveAsync(cacheKey);
-                await _cache.RemoveAsync("all_shedules"); // Чистим кеш всех расписаний
+                await _cache.RemoveAsync("all_shedules");
 
                 return Ok(sheduleDto);
             }
@@ -139,7 +139,7 @@ namespace Infrastructure.Api
 
                 string cacheKey = $"shedule_{id}";
                 await _cache.RemoveAsync(cacheKey);
-                await _cache.RemoveAsync("all_shedules"); // Чистим кеш всех расписаний
+                await _cache.RemoveAsync("all_shedules");
 
                 return Ok(true);
             }

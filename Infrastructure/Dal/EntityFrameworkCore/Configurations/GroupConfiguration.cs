@@ -14,14 +14,8 @@ public class GroupConfiguration : IEntityTypeConfiguration<Group>
             .HasColumnName("Id")
             .IsRequired();
         
-        builder.HasMany(x=>x.Shedules)
-            .WithOne(x=>x.Group)
-            .HasForeignKey(x=>x.Id)
-            .OnDelete(DeleteBehavior.Cascade);
-        
-        builder.HasMany(x => x.Users)
-            .WithOne(x=>x.Group)
-            .HasForeignKey(x=>x.GroupId)
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.Property(x=> x.GroupName)
+            .HasColumnName("GroupName")
+            .IsRequired();
     }
 }

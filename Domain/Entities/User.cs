@@ -23,18 +23,17 @@ public class User : BaseEntity
     {
         Name = user.Name;
         Email = user.Email;
-        Group = user.Group;
         IsVerified = user.IsVerified;
         GroupId = user.GroupId;
+        Validate();
     }
     //post Email -> письмо на емэйл с ссылкой на подтверждение ->update перейдя по ссылке в бд емэйл отмечается как верефицированный? -> с него можно зайти
-    public User(string name, string email, Group group, bool isVerified)
+    public User(string name, string email, Guid groupId, bool isVerified)
     {
         Name = name;
         Email = email;
-        Group = group;
         IsVerified = isVerified;
-        GroupId = group.Id;
+        GroupId = groupId;
         Validate();
     }
 }

@@ -6,23 +6,55 @@ using Infrastructure.Dal.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+#region Repository
+
 builder.Services.AddScoped<ILessonRepository, LessonRepository>();
 builder.Services.AddScoped<ISheduleRepository, SheduleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IGroupRepository, GroupRepository>();
+
+#endregion
+
+#region Other
+
 builder.Services.AddDbContext<ProjectDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
+        npgsqlOptions =>
+        {
+            npgsqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 3,
+                maxRetryDelay: TimeSpan.FromSeconds(5),
+                errorCodesToAdd: null);
+        }));
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+#endregion
+
+#region Services
+
+builder.Services.AddScoped<GroupService>();
 builder.Services.AddScoped<LessonService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<SheduleService>();
-builder.Services.AddAutoMapper(typeof(UserProfile), typeof(SheduleProfile));
+
+#endregion
+
+#region Mapper
+
+builder.Services.AddAutoMapper(typeof(UserProfile), typeof(SheduleProfile),typeof(LessonProfile),typeof(GroupProfile));
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-    options.Configuration = "localhost"; // Укажи адрес Redis-сервера
+    options.Configuration = "localhost"; 
 });
+
+#endregion
+
+#region StartUp
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -37,7 +69,6 @@ else
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
@@ -46,3 +77,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+#endregion

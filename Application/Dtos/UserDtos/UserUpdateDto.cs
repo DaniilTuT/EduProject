@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Domain.Entities;
 
-namespace Application.Dtos;
+namespace Application.Dtos.UserDtos;
 
 public class UserUpdateDto
 {
@@ -15,5 +15,5 @@ public class UserUpdateDto
     public string Email { get; set; } = string.Empty;
     
     [Required]
-    public Group Group  { get; set; }
+    public Guid GroupId  { get; set; }
 }

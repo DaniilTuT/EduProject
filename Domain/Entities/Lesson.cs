@@ -18,14 +18,13 @@ public class Lesson:BaseEntity
     /// <param name="teacher">Учитель</param>
     /// <param name="typeOfLesson">Тип пары</param>
     /// <param name="dateRange">Время начала и конца пары</param>
-    public Lesson(Subject subject, Teacher teacher, TypeOfLesson? typeOfLesson, DateRange dateRange, Shedule shedule)
+    public Lesson(Subject subject, Teacher teacher, TypeOfLesson? typeOfLesson, DateRange dateRange, Guid sheduleId)
     {
         Subject = subject;
         Teacher = teacher;
         TypeOfLesson = typeOfLesson;
         DateRange = dateRange;
-        Shedule = shedule;
-        SheduleId = Shedule.Id;
+        SheduleId = sheduleId;
         Validate();
     }
 
@@ -69,6 +68,8 @@ public class Lesson:BaseEntity
         Teacher = lesson.Teacher;
         TypeOfLesson = lesson.TypeOfLesson;
         DateRange = lesson.DateRange;
+        SheduleId = lesson.SheduleId;
+        Validate();
     }
     
 }

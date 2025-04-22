@@ -13,14 +13,11 @@ public class Shedule: BaseEntity
     /// <param name="dayOfWeek">День недели</param>
     /// <param name="lessons">Список уроков</param>
     /// <param name="isOddWeek">Чётная/нечётная неделя</param>
-    public Shedule(DayOfWeek day, List<Lesson> lessons, bool isOddWeek,Group group)
+    public Shedule(DayOfWeek day, List<Lesson> lessons, bool isOddWeek,Guid groupId)
     {
-        Group = group;
         Day = day;
-        Lessons = lessons;
         IsOddWeek = isOddWeek;
-        GroupId = group.Id;
-        
+        GroupId = groupId;
         
         Validate();
     }
@@ -57,9 +54,8 @@ public class Shedule: BaseEntity
     public void Update(Shedule shedule)
     {
         Day = shedule.Day;
-        Lessons = shedule.Lessons;
         IsOddWeek = shedule.IsOddWeek;
         GroupId = shedule.GroupId;
-        Group = shedule.Group;
+        Validate();
     }
 }
